@@ -1,5 +1,12 @@
 #include "pelit.dtsi"
 
 &kscan0 {
-    // 여기에 왼손 특정 설정이 있다면 추가
+    col-gpios
+        = <&gpio0 11 GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN>
+        , <&gpio1 0 GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN>
+        , <&gpio0 24 GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN>
+        , <&gpio0 22 GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN>
+        , <&gpio0 20 GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN>
+        , <&gpio0 17 GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN>
+        ;
 };
