@@ -1,14 +1,23 @@
 if SHIELD_PELIT_LEFT
+
+config ZMK_KEYBOARD_NAME
+    default "Pelit"
+
 config ZMK_SPLIT_ROLE_CENTRAL
     default y
+
 endif
 
-if SHIELD_PELIT_RIGHT
-config ZMK_SPLIT_ROLE_CENTRAL
-    default n
-endif
 
 if SHIELD_PELIT_LEFT || SHIELD_PELIT_RIGHT
+
 config ZMK_SPLIT
     default y
+
+config BT
+    default y
+
+config ZMK_BLE
+    default y
+
 endif
