@@ -84,8 +84,8 @@
             require-prior-idle-ms = <100>;
         };
 
-        tab {
-            bindings = <&kp TAB>;
+        esc {
+            bindings = <&kp ESC>;
             key-positions = <1 2>;
             require-prior-idle-ms = <100>;
         };
@@ -110,7 +110,7 @@
 
         right {
             bindings = <&kp RIGHT>;
-            key-positions = <21 22>;
+            key-positions = <21 20>;
             require-prior-idle-ms = <100>;
         };
 
@@ -122,14 +122,35 @@
 
         end {
             bindings = <&kp END>;
-            key-positions = <22 23>;
+            key-positions = <22 21>;
             require-prior-idle-ms = <100>;
         };
 
         del {
             bindings = <&kp DEL>;
-            key-positions = <10 11>;
+            key-positions = <10 9>;
             require-prior-idle-ms = <100>;
+        };
+
+        pageup {
+            bindings = <&kp PAGE_UP>;
+            key-positions = <8 9>;
+        };
+
+        pagedown {
+            bindings = <&kp PAGE_DOWN>;
+            key-positions = <32 33>;
+        };
+
+        btclr {
+            bindings = <&bt BT_CLR>;
+            key-positions = <13 17>;
+            layers = <1>;
+        };
+
+        dot {
+            bindings = <&kp SQT>;
+            key-positions = <33 34>;
         };
     };
 
@@ -144,6 +165,15 @@
             quick-tap-ms = <130>;
             flavor = "tap-preferred";
         };
+
+        td_lang_han: td_lang_han {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TD_LANG_HAN";
+            #binding-cells = <0>;
+            bindings = <&kp RALT>, <&kp RCTRL>;
+
+            tapping-term-ms = <150>;
+        };
     };
 
     keymap {
@@ -157,14 +187,14 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-&kp TAB    &kp Q           &kp W           &kp E             &kp R        &kp T        &kp Y    &kp U        &kp I              &kp O           &kp P                   &kp BSPC
-&kp LCTRL  &hr LEFT_GUI A  &hr LEFT_ALT S  &hr LEFT_SHIFT D  &hr LCTRL F  &kp G        &kp H    &hr LCTRL J  &hr LEFT_SHIFT K  &hr LEFT_ALT L  &hr LEFT_GUI SEMICOLON  &kp SQT
-&kp LSHFT  &kp Z           &kp X           &kp C             &kp V        &kp B        &kp N    &kp M        &kp COMMA          &kp DOT         &kp FSLH                &kp ESC
-                                           &kp LGUI          &mo 1        &kp SPACE    &kp RET  &mo 2        &hr RCTRL RALT
+&trans  &kp Q           &kp W           &kp E             &kp R        &kp T        &kp Y    &kp U            &kp I             &kp O           &kp P                   &trans
+&trans  &hr LEFT_GUI A  &hr LEFT_ALT S  &hr LEFT_SHIFT D  &hr LCTRL F  &kp G        &kp H    &hr LCTRL J      &hr LEFT_SHIFT K  &hr LEFT_ALT L  &hr LEFT_GUI SEMICOLON  &kp SQT
+&trans  &kp Z           &kp X           &kp C             &kp V        &kp B        &kp N    &kp M            &kp COMMA         &kp DOT         &kp FSLH                &trans
+                                        &kp LGUI          &lt 1 TAB    &kp SPACE    &kp RET  &lt 2 BACKSPACE  &td_lang_han
             >;
         };
 
-        lower_layer {
+        num_layer {
             // -----------------------------------------------------------------------------------------
             // |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BSPC |
             // | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT | F11 | F12  |
@@ -172,14 +202,14 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-&kp TAB     &kp N1        &kp N2        &kp N3        &kp N4        &kp N5          &kp N6    &kp N7    &kp N8    &kp N9     &kp N0   &kp BSPC
-&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT  &kp F11  &kp F12
-&kp LSHFT   &kp F1        &kp F2        &kp F3        &kp F4        &kp F5          &kp F6    &kp F7    &kp F8    &kp F9     &kp F10  &kp PRINTSCREEN
-                                        &kp LGUI      &trans        &kp SPACE       &kp RET   &trans    &kp RALT
+&trans  &kp N1        &kp N2        &kp N3        &kp N4        &kp N5          &kp N6    &kp N7         &kp N8    &kp N9     &kp N0   &trans
+&trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &kp LEFT  &kp DOWN       &kp UP    &kp RIGHT  &kp F11  &trans
+&trans  &kp F1        &kp F2        &kp F3        &kp F4        &kp F5          &kp F6    &kp F7         &kp F8    &kp F9     &kp F10  &kp PRINTSCREEN
+                                    &kp LGUI      &trans        &kp SPACE       &kp RET   &kp BACKSPACE  &kp RALT
             >;
         };
 
-        raise_layer {
+        func_layer {
             // -----------------------------------------------------------------------------------------
             // |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BSPC |
             // | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
@@ -187,10 +217,10 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-&kp TAB    &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS   &kp ASTRK  &kp LPAR  &kp RPAR  &kp BSPC
-&kp LCTRL  &trans    &trans  &trans    &trans    &trans       &kp MINUS  &kp EQUAL  &kp LBKT   &kp RBKT  &kp BSLH  &kp GRAVE
-&kp LSHFT  &trans    &trans  &trans    &trans    &trans       &kp UNDER  &kp PLUS   &kp LBRC   &kp RBRC  &kp PIPE  &kp TILDE
-                             &kp LGUI  &trans    &kp SPACE    &kp RET    &trans     &kp RALT
+&trans  &kp EXCL         &kp AT     &kp HASH  &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS        &kp ASTRK  &kp LPAR  &kp RPAR  &trans
+&trans  &kp TILDE        &kp GRAVE  &trans    &trans    &trans       &kp EQUAL  &kp MINUS       &kp LBKT   &kp RBKT  &kp BSLH  &trans
+&trans  &kp PRINTSCREEN  &kp CAPS   &trans    &trans    &trans       &kp PLUS   &kp UNDERSCORE  &kp LBRC   &kp RBRC  &kp PIPE  &trans
+                                    &kp LGUI  &trans    &kp SPACE    &kp RET    &kp BACKSPACE   &kp RALT
             >;
         };
     };
